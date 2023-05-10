@@ -5,6 +5,7 @@
   <div>
     <h1>Lista de cursos</h1>
     <a href="{% url 'crear_curso' %}">Crear curso</a>
+    <a href="{% url 'eliminar_cursos' %}">Eliminar curso</a>
     <br><br>
     <form action="{% url 'buscar_cursos' %}" method="post">
       {% csrf_token %}
@@ -20,3 +21,6 @@
   </div>
 </section>
 {% endblock contenido %}
+
+
+

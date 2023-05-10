@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from control_estudios.views import listar_estudiantes, listar_cursos, crear_curso,\
+from control_estudios.views import listar_estudiantes, listar_cursos, crear_curso, eliminar_cursos,\
     buscar_cursos
 
 
@@ -25,5 +25,6 @@ urlpatterns = [
     path("estudiantes/", listar_estudiantes, name="lista_estudiantes"),
     path("cursos/", listar_cursos, name="lista_cursos"),
     path("crear-curso/", crear_curso, name="crear_curso"),
+    path("eliminar-cursos/", eliminar_cursos, name="eliminar_cursos"),
     path("buscar-cursos/", buscar_cursos, name="buscar_cursos"),
 ]

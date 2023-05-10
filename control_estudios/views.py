@@ -73,6 +73,33 @@ def crear_curso(request):
     return http_response
 
 
+def eliminar_cursos(request):
+    if request.method == 'POST':
+        curso_ids = request.POST.getlist('curso_ids[]')
+        print(curso_ids)
+        cursos = Curso.objects.filter(id__in=curso_ids)
+        print(cursos)
+        cursos.delete()
+        return redirect('lista_cursos')
+    
+    cursos = Curso.objects.all()
+    contexto = {
+        "cursos": cursos,
+    }
+    http_response = render(
+        request=request,
+        template_name='control_estudios/eliminar.html',
+        context=contexto
+    )
+    return http_response
+    
+
+
+
+
+
+
+
 def buscar_cursos(request):
     if request.method == "POST":
         data = request.POST
