@@ -1,12 +1,14 @@
 {% extends "control_estudios/base.html" %}
 
 {% block contenido %}
-<form action="{% url 'crear_curso' %}" method="post">
+<form action="{% url 'crear_artista' %}" method="post">
   {% csrf_token %}
-  <p>Nombre del curso</p>
+  <p>Nombre</p>
   <input type="text" name="nombre">
-  <p>Comision</p>
-  <input type="number" name="comision" step="1">
+  <p>Apellido</p>
+  <input type="text" name="apellido">
+  <p>Edad</p>
+  <input type="number" name="edad" step="1">
   <input type="submit" value="Enviar">
 </form>
 {% endblock contenido %}

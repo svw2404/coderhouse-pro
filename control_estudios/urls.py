@@ -17,14 +17,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from control_estudios.views import listar_estudiantes, listar_cursos, crear_curso, eliminar_cursos,\
-    buscar_cursos
+
+from control_estudios.views import listar_albums, eliminar_canciones, eliminar_albums, buscar_albums, buscar_canciones, crear_canciones, crear_albums, listar_canciones, listar_artistas, crear_artistas, eliminar_artistas,\
+    buscar_artistas
 
 
 urlpatterns = [
-    path("estudiantes/", listar_estudiantes, name="lista_estudiantes"),
-    path("cursos/", listar_cursos, name="lista_cursos"),
-    path("crear-curso/", crear_curso, name="crear_curso"),
-    path("eliminar-cursos/", eliminar_cursos, name="eliminar_cursos"),
-    path("buscar-cursos/", buscar_cursos, name="buscar_cursos"),
+    path("albums/", listar_albums, name="lista_albums"),
+    path("artistas/", listar_artistas, name="lista_artistas"),
+    path("canciones/", listar_canciones, name="lista_canciones"),
+    path("crear-artistas/", crear_artistas, name="crear_artistas"),
+    path("crear-albums/", crear_albums, name="crear_albums"),
+    path("crear-canciones/", crear_canciones, name="crear_canciones"),
+    path("eliminar-artistas/", eliminar_artistas, name="eliminar_artistas"),
+    path("eliminar-albums/", eliminar_albums, name="eliminar_albums"),
+    path("eliminar-canciones/", eliminar_canciones, name="eliminar_canciones"),
+    path("buscar-artistas/", buscar_artistas, name="buscar_artistas"),
+    path("buscar-albums/", buscar_albums, name="buscar_albums"),
+    path("buscar-canciones/", buscar_canciones, name="buscar_canciones"),
 ]

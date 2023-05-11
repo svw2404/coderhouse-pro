@@ -1,0 +1,26 @@
+{% extends "control_estudios/base.html" %}
+
+{% block contenido %}
+<section>
+  <div>
+    <h1>Lista de cursos</h1>
+    <a href="{% url 'crear_artistas' %}">Agregar Artista</a><br>
+    <a href="{% url 'eliminar_artistas' %}">Eliminar Artista</a>
+    <br><br>
+    <form action="{% url 'buscar_artistas' %}" method="post">
+      {% csrf_token %}
+      <input type="text" name="busqueda" value="{{ reciente }}">
+      <input type="submit" value="Buscar">
+    </form>
+    <br>
+    <ul>
+    {% for artista in artistas %}
+      <li>{{ artista.nombre }} {{ artista.apellido }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock contenido %}
+
+
+
