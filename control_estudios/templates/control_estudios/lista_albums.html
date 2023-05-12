@@ -3,7 +3,7 @@
 {% block contenido %}
 <section>
   <div>
-    <h1>Lista de Albums</h1>
+    <h1>Lista de tus Albums Favoritos</h1>
     <a href="{% url 'crear_albums' %}">Agregar Album</a><br>
     <a href="{% url 'eliminar_albums' %}">Eliminar Album</a>
     <br><br>
@@ -15,7 +15,7 @@
     <br>
     <ul>
     {% for album in albums %}
-      <li>{{ album.nombre }}</li>
+      <li><a href="{% url 'filtrar_canciones' %}?nombre_albums={{ album.nombre }}&nombre_artistas={{ album.nombre_artista }}">{{ album.nombre }}</a></li>
     {% endfor %}
     </ul>
   </div>

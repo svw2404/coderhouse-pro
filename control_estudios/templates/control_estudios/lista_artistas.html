@@ -3,7 +3,7 @@
 {% block contenido %}
 <section>
   <div>
-    <h1>Lista de cursos</h1>
+    <h1>Lista de tus Artistas Favoritos</h1>
     <a href="{% url 'crear_artistas' %}">Agregar Artista</a><br>
     <a href="{% url 'eliminar_artistas' %}">Eliminar Artista</a>
     <br><br>
@@ -15,7 +15,7 @@
     <br>
     <ul>
     {% for artista in artistas %}
-      <li>{{ artista.nombre }} {{ artista.apellido }}</li>
+      <li><a href="{% url 'filtrar_albums' %}?nombre_artistas={{ artista.nombre }}%20{{ artista.apellido }}">{{ artista.nombre }} {{ artista.apellido }}</a></li>
     {% endfor %}
     </ul>
   </div>

@@ -1,0 +1,26 @@
+{% extends "control_estudios/base.html" %}
+
+{% block contenido %}
+<section>
+  <div>
+    <h1>Lista de tus Canciones Favoritas de {{nombre_albums_mayus}} de {{nombre_artistas_mayus}}</h1>
+    <a href="{% url 'crear_canciones' %}">Agregar Canción</a><br>
+    <a href="{% url 'eliminar_canciones' %}">Eliminar Canción</a>
+    <br><br>
+    <form action="{% url 'buscar_canciones' %}" method="post">
+      {% csrf_token %}
+      <input type="text" name="busqueda" value="{{ reciente }}">
+      <input type="submit" value="Buscar">
+    </form>
+    <br>
+    <ul>
+    {% for cancion in canciones %}
+      <li>{{ cancion.nombre }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock contenido %}
+
+
+

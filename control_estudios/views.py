@@ -102,7 +102,7 @@ def crear_albums(request):
         if formulario.is_valid():
             data = formulario.cleaned_data  # es un diccionario
             nombre = data["nombre"]
-            nombre_artista = data["nombre_artista"]
+            nombre_artista = data["nombre_artista"].replace(" ", "").lower()
             albums = Albums(nombre=nombre, nombre_artista=nombre_artista)  # lo crean solo en RAM
             albums.save()  # Lo guardan en la Base de datos
 
@@ -125,7 +125,7 @@ def crear_canciones(request):
         if formulario.is_valid():
             data = formulario.cleaned_data  # es un diccionario
             nombre = data["nombre"]
-            nombre_album = data["nombre_album"]
+            nombre_album = data["nombre_album"].replace(" ", "").lower()
             albums = Canciones(nombre=nombre, nombre_album=nombre_album)  # lo crean solo en RAM
             albums.save()  # Lo guardan en la Base de datos
 
@@ -247,3 +247,43 @@ def buscar_canciones(request):
             context=contexto,
         )
         return http_response
+    
+
+
+
+
+
+def filtrar_canciones(request):
+    nombre_artistas_mayus = request.GET.getlist('nombre_artistas')
+    nombre_artistas_mayus = ', '.join(nombre_artistas_mayus)
+    nombre_albums = request.GET.getlist('nombre_albums')
+    nombre_albums_mayus = ', '.join(nombre_albums).title()
+    nombre_albums = [nombre.lower().replace(" ", "") for nombre in nombre_albums]
+    canciones = Canciones.objects.filter(nombre_album__in=nombre_albums)
+    contexto = {
+        "nombre_artistas_mayus": nombre_artistas_mayus,
+        "nombre_albums_mayus":nombre_albums_mayus,
+        "canciones": canciones,
+    }
+    http_response = render(
+        request=request,
+        template_name='control_estudios/filtrar_canciones.html',
+        context=contexto,
+    )
+    return http_response
+
+def filtrar_albums(request):
+    nombre_artistas = request.GET.getlist('nombre_artistas')
+    nombre_artistas_mayus = ', '.join(nombre_artistas).title()
+    nombre_artistas = [nombre.lower().replace(" ", "") for nombre in nombre_artistas]
+    albums = Albums.objects.filter(nombre_artista__in=nombre_artistas)
+    contexto = {
+        "nombre_artistas_mayus": nombre_artistas_mayus,
+        "albums": albums,
+    }
+    http_response = render(
+        request=request,
+        template_name='control_estudios/filtrar_albums.html',
+        context=contexto,
+    )
+    return http_response

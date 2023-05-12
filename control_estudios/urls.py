@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 
 
-from control_estudios.views import listar_albums, eliminar_canciones, eliminar_albums, buscar_albums, buscar_canciones, crear_canciones, crear_albums, listar_canciones, listar_artistas, crear_artistas, eliminar_artistas,\
+from control_estudios.views import listar_albums, eliminar_canciones, filtrar_albums, filtrar_canciones, eliminar_albums, buscar_albums, buscar_canciones, crear_canciones, crear_albums, listar_canciones, listar_artistas, crear_artistas, eliminar_artistas,\
     buscar_artistas
 
 
@@ -35,4 +35,6 @@ urlpatterns = [
     path("buscar-artistas/", buscar_artistas, name="buscar_artistas"),
     path("buscar-albums/", buscar_albums, name="buscar_albums"),
     path("buscar-canciones/", buscar_canciones, name="buscar_canciones"),
+    path("filtrar-canciones/", filtrar_canciones, name="filtrar_canciones"),
+    path("filtrar-albums/", filtrar_albums, name="filtrar_albums")
 ]
